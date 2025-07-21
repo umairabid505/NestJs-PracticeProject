@@ -1,7 +1,7 @@
 import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { PassportStrategy } from '@nestjs/passport';
 import { Strategy } from 'passport-local';
-import { UserHelperService } from 'src/User/UserHelper.service';
+import { UserHelperService } from 'src/User/userHelper.service';
 
 @Injectable()
 export class LocalStrategy extends PassportStrategy(Strategy) {
@@ -14,8 +14,11 @@ export class LocalStrategy extends PassportStrategy(Strategy) {
     // console.log('Entering local');
 
     const user = await this.userHelperService.findUserByEmail(email);
-    const isMatch = await this.userHelperService.compareUserPassword(password,user?.password);
-    if (!user || !(isMatch)) {
+    const isMatch = await this.userHelperService.compareUserPassword(
+      password,
+      user?.password,
+    );
+    if (!user || !isMatch) {
       throw new HttpException('Invalid Credentials', HttpStatus.UNAUTHORIZED);
     }
 

@@ -1,5 +1,5 @@
 import { Body, Controller, Get, Put, Request, UseGuards } from '@nestjs/common';
-import { UserService } from './User.service';
+import { UserService } from './user.service';
 import { UpdateDto } from './dto/UpdateDto';
 import { JwtStrategy } from 'src/Auth/strategies/jwt.strategy';
 import { AuthGuard } from '@nestjs/passport';

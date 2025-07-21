@@ -1,7 +1,7 @@
 // src/common/validators/validator.module.ts
 import { Module } from '@nestjs/common';
 import { EmailAlreadyExistsConstraint } from './emailalreadyexist.service';
-import { UserModule } from 'src/User/User.module';
+import { UserModule } from 'src/User/user.module';
 
 @Module({
   imports: [UserModule], // Needed for UserHelperService injection

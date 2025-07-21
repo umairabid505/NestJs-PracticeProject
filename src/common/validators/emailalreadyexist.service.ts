@@ -8,7 +8,7 @@ import {
   ValidationOptions,
 } from 'class-validator';
 import { Injectable } from '@nestjs/common';
-import { UserHelperService } from 'src/User/UserHelper.service';
+import { UserHelperService } from 'src/User/userHelper.service';
 
 @ValidatorConstraint({ async: true })
 @Injectable() // ✅ allows Nest to inject services

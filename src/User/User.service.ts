@@ -1,11 +1,7 @@
-import {
-  HttpException,
-  HttpStatus,
-  Injectable,
-} from '@nestjs/common';
+import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { PrismaService } from 'prisma/PrismaService.service';
 import { UpdateDto } from './dto/UpdateDto';
-import { UserHelperService } from './UserHelper.service';
+import { UserHelperService } from './userHelper.service';
 import { SignupDto } from 'src/Auth/dto/SignupDto.dto';
 
 @Injectable()
@@ -19,13 +15,14 @@ export class UserService {
     const checkUser: SignupDto | null =
       await this.userHelperService.findUserByEmail(user.email);
     if (!checkUser) {
-      const hashedPassword = await this.userHelperService.hashUserPassword(user.password);
+      const hashedPassword = await this.userHelperService.hashUserPassword(
+        user.password,
+      );
       return await this.prismaService.user.create({
         data: {
           ...user,
-          password:hashedPassword
+          password: hashedPassword,
         },
-        
       });
     }
     throw new HttpException(
