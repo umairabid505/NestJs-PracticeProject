@@ -1,7 +1,12 @@
-import { HttpException, HttpStatus, Injectable, NotFoundException } from '@nestjs/common';
+import {
+  HttpException,
+  HttpStatus,
+  Injectable,
+  NotFoundException,
+} from '@nestjs/common';
 import { CreateTaskDto } from './dto/create-task.dto';
 import { UpdateTaskDto } from './dto/update-task.dto';
-import { PrismaService } from 'prisma/PrismaService.service';
+import { PrismaService } from 'prisma/prisma.service';
 
 @Injectable()
 export class TaskService {
@@ -27,8 +32,8 @@ export class TaskService {
       },
     });
 
-    if(!task){
-      throw new HttpException("No task found",HttpStatus.NOT_FOUND)
+    if (!task) {
+      throw new HttpException('No task found', HttpStatus.NOT_FOUND);
     }
 
     return task;
@@ -41,11 +46,13 @@ export class TaskService {
         id,
       },
     });
-    console.log("found",todo);
-    
+    console.log('found', todo);
 
     if (!todo) {
-      throw new HttpException('Todo not found or acces denied',HttpStatus.NOT_FOUND);
+      throw new HttpException(
+        'Todo not found or acces denied',
+        HttpStatus.NOT_FOUND,
+      );
     }
 
     return await this.prismaService.todo.update({
@@ -64,7 +71,7 @@ export class TaskService {
     });
 
     if (!existing) {
-      throw new HttpException('Todo not found',HttpStatus.NOT_FOUND);
+      throw new HttpException('Todo not found', HttpStatus.NOT_FOUND);
     }
 
     return await this.prismaService.todo.delete({ where: { id } });

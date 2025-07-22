@@ -2,7 +2,7 @@ import { forwardRef, Module } from '@nestjs/common';
 import { UserService } from './user.service';
 import { UserController } from './user.controller';
 import { UserHelperService } from './userHelper.service';
-import { PrismaModule } from 'prisma/PrismaModule.module';
+import { PrismaModule } from 'prisma/prisma.module';
 import { AuthModule } from 'src/Auth/auth.module';
 
 @Module({

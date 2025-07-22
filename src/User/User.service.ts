@@ -1,6 +1,6 @@
 import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
-import { PrismaService } from 'prisma/PrismaService.service';
-import { UpdateDto } from './dto/UpdateDto';
+import { PrismaService } from 'prisma/prisma.service';
+import { UpdateUserDto } from './dto/update-user.dto';
 import { UserHelperService } from './userHelper.service';
 import { SignupDto } from 'src/Auth/dto/SignupDto.dto';
 
@@ -41,10 +41,10 @@ export class UserService {
     });
   }
 
-  async updateUser(UpdateDto: UpdateDto, req) {
+  async updateUser(UpdateUserDto: UpdateUserDto, req) {
     return await this.prismaService.user.update({
       where: { id: req.user.id },
-      data: UpdateDto,
+      data: UpdateUserDto,
     });
   }
 }
